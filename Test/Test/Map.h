@@ -7,6 +7,7 @@ class Map
 public:
 	Cell _cell[Mheight][Mwidth];
 	Map();
-	~Map();
+	~Map(); 
+	void update();
 };
 

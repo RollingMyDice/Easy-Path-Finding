@@ -4,8 +4,11 @@
 #include "stdafx.h"
 #include "Map.h"
 #include <iostream>
+#include <list>
+#include <string>
 using namespace std;
 int sum=0;
+list<string> solutions;
 void update(Map &m,int x,int y)
 {
 	system("cls");
@@ -29,12 +32,14 @@ void update(Map &m,int x,int y)
 	}
 }
 
-void go(int x, int y,Map &m,int act)
+void go(int x, int y,Map &m,int act,string &s)
 {
 	update(m,x,y);
 	if (x == Mwidth) 
 	{
 		std::cout << "Goal\n";
+		solutions.emplace_back(s);
+		s.pop_back();
 		++sum;
 		return;
 	}
@@ -60,28 +65,32 @@ void go(int x, int y,Map &m,int act)
 		if (m._cell[y][x].up == true)
 		{
 			m._cell[y][x].up = false;
-			go(x, y - 1, m, 1);
+			s.append("U");
+			go(x, y - 1, m, 1,s);
 			m._cell[y][x].up = true;
 			update(m, x, y);
 		}
 		if (m._cell[y][x].down == true)
 		{
 			m._cell[y][x].down = false;
-			go(x, y + 1, m, 3);
+			s.append("D");
+			go(x, y + 1, m, 3,s);
 			m._cell[y][x].down = true;
 			update(m, x, y);
 		}
 		if (m._cell[y][x].left == true)
 		{
 			m._cell[y][x].left = false;
-			go(x - 1, y, m, 4);
+			s.append("L");
+			go(x - 1, y, m, 4,s);
 			m._cell[y][x].left = true;
 			update(m, x, y);
 		}
 		if (m._cell[y][x].right == true)
 		{
 			m._cell[y][x].right = false;
-			go(x + 1, y, m, 2);
+			s.append("R");
+			go(x + 1, y, m, 2,s);
 			m._cell[y][x].right = true;
 			update(m, x, y);
 		}
@@ -108,17 +117,23 @@ void go(int x, int y,Map &m,int act)
 		}
 	}
 	update(m, x, y);
+	s.pop_back();
 	return;
 }
 
 int main()
 {
 	auto t = new Map;
+	string s;
 	update(*t,Mheight,Mwidth);
-	system("pause");
-	go(0, 0, *t,0);
+//	system("pause");
+	go(0, 0, *t,0,s);
 	delete t;
 	cout << sum << endl;
+	for (string t : solutions)
+	{
+		cout << t << endl;
+	}
 	getchar();
     return 0;
 }

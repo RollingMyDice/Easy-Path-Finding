@@ -63,7 +63,7 @@ void go(int x, int y,Map &m,int act,string &s)
 	}
 	update(m, x, y);
 	{
-		if (m._cell[y][x].up == true)
+		if (m._cell[y][x].up)
 		{
 			m._cell[y][x].up = false;
 			s.append("U");
@@ -71,7 +71,7 @@ void go(int x, int y,Map &m,int act,string &s)
 			m._cell[y][x].up = true;
 			update(m, x, y);
 		}
-		if (m._cell[y][x].down == true)
+		if (m._cell[y][x].down)
 		{
 			m._cell[y][x].down = false;
 			s.append("D");
@@ -79,7 +79,7 @@ void go(int x, int y,Map &m,int act,string &s)
 			m._cell[y][x].down = true;
 			update(m, x, y);
 		}
-		if (m._cell[y][x].left == true)
+		if (m._cell[y][x].left)
 		{
 			m._cell[y][x].left = false;
 			s.append("L");
@@ -87,7 +87,7 @@ void go(int x, int y,Map &m,int act,string &s)
 			m._cell[y][x].left = true;
 			update(m, x, y);
 		}
-		if (m._cell[y][x].right == true)
+		if (m._cell[y][x].right)
 		{
 			m._cell[y][x].right = false;
 			s.append("R");

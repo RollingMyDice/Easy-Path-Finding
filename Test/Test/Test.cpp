@@ -39,6 +39,7 @@ void go(int x, int y,Map &m,int act,string &s)
 	{
 		std::cout << "Goal\n";
 		solutions.emplace_back(s);
+		if (s.length())
 		s.pop_back();
 		++sum;
 		return;
@@ -117,6 +118,7 @@ void go(int x, int y,Map &m,int act,string &s)
 		}
 	}
 	update(m, x, y);
+	if(s.length())
 	s.pop_back();
 	return;
 }

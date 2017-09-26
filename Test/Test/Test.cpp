@@ -117,6 +117,7 @@ int main()
 	update(*t,Mheight,Mwidth);
 	system("pause");
 	go(0, 0, *t,0);
+	delete t;
 	cout << sum << endl;
 	getchar();
     return 0;
